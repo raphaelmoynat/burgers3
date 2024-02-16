@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello BurgerController!{% endblock %}
+
+{% block body %}
+<div class="row">
+
+        {% for burger in burgers %}
+            <div class='col-md-4 d-flex justify-content-center'>
+                <div class="card mb-3" style="width: 18rem;">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ burger.name }}</h5>
+                        <p class="card-text">prix : {{ burger.price }} €</p>
+                        <a href="{{ path("app_show",{id:burger.id}) }}" class="btn btn-primary">Voir</a>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+
+</div>
+
+{% endblock %}

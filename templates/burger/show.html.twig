@@ -1,0 +1,50 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello BurgerController!{% endblock %}
+
+{% form_theme formComment "bootstrap_5_layout.html.twig" %}
+
+
+{% block body %}
+    <div class="d-flex justify-content-center">
+
+        <div class="card mx-2" style="width: 18rem;">
+            <div class="card-body">
+                <h5 class="card-title">{{ burger.name }}</h5>
+                <p class="card-text">prix : {{ burger.price }} €</p>
+                <a href="{{ path("app_burger") }}" class="btn btn-primary">Retour</a>
+                <a href="{{ path("delete_burger",{id:burger.id}) }}" class="btn btn-danger">Supprimer</a>
+                <a href="{{ path("edit_burger",{id:burger.id}) }}" class="btn btn-warning">Edit</a>
+
+
+
+            </div>
+        </div>
+
+
+    </div>
+
+    <h3 class="mt-4">Commentaires</h3>
+
+
+    {% for comment in burger.comments %}
+        <hr>
+        <div class="d-flex justify-content-between">
+        <p>{{ comment.content }}</p>
+            <div>
+                <a href="{{ path("delete_comment",{id:comment.id}) }}" class="btn btn-danger">Supprimer</a>
+                <a href="{{ path("edit_comment",{id:comment.id}) }}" class="btn btn-warning">Edit</a>
+            </div>
+
+        </div>
+
+    {% endfor %}
+
+    {{ form_start(formComment, {attr: {action:path("app_comment_create", {id:burger.id})}}) }}
+    {{ form_widget(formComment.content) }}
+    <button type="submit" class="btn btn-success">comment</button>
+    {{ form_end(formComment) }}
+
+
+
+{% endblock %}

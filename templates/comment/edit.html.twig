@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+
+
+{% form_theme formComment "bootstrap_5_layout.html.twig" %}
+
+
+{% block body %}
+    {{ form_start(formComment) }}
+    {{ form_widget(formComment.content) }}
+    <button type="submit" class="btn btn-success">Edit</button>
+    {{ form_end(formComment) }}
+{% endblock %}
